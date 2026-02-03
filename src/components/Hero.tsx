@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
 import { TypeWriter } from "./TypeWriter";
+import heroImage from "../assets/PHOTO-2026-02-03-04-28-28.jpg";
 
 export const Hero = () => {
   const techStack = ["React.js", "Node.js", "TypeScript", "Firebase", "Laravel"];
@@ -36,7 +37,9 @@ export const Hero = () => {
       </div>
 
       <div className="section-container relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+          {/* Text Content */}
+          <div className="text-center lg:text-left">
           {/* Greeting */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -84,7 +87,7 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex flex-wrap justify-center gap-3 mb-10"
+            className="flex flex-wrap justify-center lg:justify-start gap-3 mb-10"
           >
             {techStack.map((tech, index) => (
               <motion.span
@@ -105,7 +108,7 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
+            className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12"
           >
             <motion.a
               href="#projects"
@@ -130,7 +133,7 @@ export const Hero = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.7 }}
-            className="flex justify-center gap-6"
+            className="flex justify-center lg:justify-start gap-6"
           >
             {[
               { icon: Github, href: "https://github.com", label: "GitHub" },
@@ -150,6 +153,35 @@ export const Hero = () => {
                 <social.icon className="w-5 h-5" />
               </motion.a>
             ))}
+          </motion.div>
+          </div>
+
+          {/* Hero Image */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, x: 50 }}
+            animate={{ opacity: 1, scale: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="relative hidden lg:block"
+          >
+            <div className="relative">
+              <motion.div
+                className="absolute -inset-4 rounded-2xl bg-gradient-to-r from-accent/20 to-accent/5 blur-2xl"
+                animate={{
+                  scale: [1, 1.05, 1],
+                  opacity: [0.5, 0.7, 0.5],
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+              <img
+                src={heroImage}
+                alt="Collaborative team working together"
+                className="relative rounded-2xl shadow-2xl w-full object-cover aspect-[4/3]"
+              />
+            </div>
           </motion.div>
         </div>
       </div>
