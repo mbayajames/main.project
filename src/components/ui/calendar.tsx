@@ -42,9 +42,9 @@ function Calendar({ className, classNames, showOutsideDays = true, ...props }: C
         ...classNames,
       }}
       components={{
-        PreviousMonthButton: () => <ChevronLeft className="h-4 w-4" />,
-        NextMonthButton: () => <ChevronRight className="h-4 w-4" />,
-      }}
+        ChevronLeft: () => <ChevronLeft className="h-4 w-4" />,
+        ChevronRight: () => <ChevronRight className="h-4 w-4" />,
+      } as unknown as React.ComponentProps<typeof DayPicker>["components"]}
       {...props}
     />
   );
