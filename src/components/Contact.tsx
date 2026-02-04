@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { Send, MapPin, Mail, Phone, CheckCircle } from "lucide-react";
+import { MapPin, Mail, Phone, CheckCircle } from "lucide-react";
 
 export const Contact = () => {
   const ref = useRef(null);
@@ -14,18 +14,66 @@ export const Contact = () => {
     message: "",
   });
 
+  // WhatsApp phone number (replace with your actual WhatsApp number)
+  const whatsappNumber = "254712555914"; // Remove the + sign and any spaces
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate form submission
+    
+    // Format the message for WhatsApp
+    const whatsappMessage = `
+*New Contact Form Submission*
+    
+*Name:* ${formData.name}
+*Email:* ${formData.email}
+*Subject:* ${formData.subject}
+*Message:*
+${formData.message}
+    
+This message was sent from your portfolio website.`;
+    
+    // Encode the message for URL
+    const encodedMessage = encodeURIComponent(whatsappMessage.trim());
+    
+    // Create WhatsApp URL
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+    
+    // Open WhatsApp in a new tab
+    window.open(whatsappUrl, "_blank");
+    
+    // Show success state
     setIsSubmitted(true);
     setTimeout(() => setIsSubmitted(false), 3000);
+    
+    // Clear form data
     setFormData({ name: "", email: "", subject: "", message: "" });
   };
 
   const contactInfo = [
-    { icon: MapPin, label: "Location", value: "San Francisco, CA" },
-    { icon: Mail, label: "Email", value: "hello@example.com" },
-    { icon: Phone, label: "Phone", value: "+1 (555) 123-4567" },
+    { 
+      icon: MapPin, 
+      label: "Location", 
+      value: "Nairobi, Kenya" 
+    },
+    { 
+      icon: Mail, 
+      label: "Email", 
+      value: "muthiorajames39@gmail.com" 
+    },
+    { 
+      icon: Mail, 
+      label: "Alternative Email", 
+      value: "jmuthiora244@gmail.com" 
+    },
+    { 
+      icon: Phone, 
+      label: "Phone", 
+      value: "+254 712 555 914",
+      action: () => {
+        // Optional: Make phone number clickable
+        window.open(`tel:+254712555914`);
+      }
+    },
   ];
 
   return (
@@ -61,7 +109,8 @@ export const Contact = () => {
                 {contactInfo.map((info, index) => (
                   <motion.div
                     key={info.label}
-                    className="flex items-start gap-4"
+                    className={`flex items-start gap-4 ${info.action ? "cursor-pointer hover:opacity-80 transition-opacity" : ""}`}
+                    onClick={info.action}
                     initial={{ opacity: 0, x: -20 }}
                     animate={isInView ? { opacity: 1, x: 0 } : {}}
                     transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
@@ -76,6 +125,31 @@ export const Contact = () => {
                   </motion.div>
                 ))}
               </div>
+              
+              {/* WhatsApp Quick Action */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.7 }}
+                className="mt-8"
+              >
+                <button
+                  onClick={() => {
+                    const defaultMessage = encodeURIComponent("Hello! I'm interested in discussing a project with you.");
+                    window.open(`https://wa.me/${whatsappNumber}?text=${defaultMessage}`, "_blank");
+                  }}
+                  className="w-full py-3 bg-green-600 hover:bg-green-700 text-white rounded-xl font-medium flex items-center justify-center gap-2 transition-colors"
+                >
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M17.507 14.307l-.009.075c-2.199-1.096-2.429-1.242-2.713-.816-.197.295-.771.964-.944 1.162-.175.195-.349.21-.646.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.293-.506.32-.578.878-1.634.1-.21.049-.375-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.576-.05-.997-.05-1.368.344-1.614 1.774-1.207 3.604.174 5.55 2.714 3.552 4.16 4.206 6.804 5.114.714.227 1.365.195 1.88.121.574-.091 1.754-.721 2.002-1.426.255-.705.255-1.29.18-1.425-.074-.135-.27-.21-.57-.345z"/>
+                    <path d="M20.52 3.449C18.24.986 15.054 0 11.986 0 5.462 0 .457 4.989.457 11.573c0 2.069.549 4.079 1.588 5.849L0 24l6.917-1.826c1.62.892 3.443 1.369 5.337 1.369 6.525 0 11.53-4.989 11.53-11.573 0-3.023-1.178-5.903-3.264-8.521zM11.986 21.38c-1.775 0-3.488-.523-4.973-1.478l-.361-.216-3.75.99.997-3.648-.235-.374c-.964-1.59-1.497-3.393-1.497-5.339 0-5.283 4.3-9.58 9.592-9.58 2.558 0 4.96.997 6.77 2.805 1.81 1.807 2.805 4.214 2.805 6.775 0 5.283-4.301 9.58-9.593 9.58z"/>
+                  </svg>
+                  Message on WhatsApp
+                </button>
+                <p className="text-xs text-muted-foreground mt-2 text-center">
+                  Quick message without filling the form
+                </p>
+              </motion.div>
             </div>
 
             {/* Availability Status */}
@@ -177,15 +251,22 @@ export const Contact = () => {
                 {isSubmitted ? (
                   <span className="flex items-center gap-2">
                     <CheckCircle className="w-5 h-5" />
-                    Message Sent!
+                    Opening WhatsApp...
                   </span>
                 ) : (
                   <span className="flex items-center gap-2">
-                    <Send className="w-5 h-5" />
-                    Send Message
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M17.507 14.307l-.009.075c-2.199-1.096-2.429-1.242-2.713-.816-.197.295-.771.964-.944 1.162-.175.195-.349.21-.646.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.293-.506.32-.578.878-1.634.1-.21.049-.375-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.576-.05-.997-.05-1.368.344-1.614 1.774-1.207 3.604.174 5.55 2.714 3.552 4.16 4.206 6.804 5.114.714.227 1.365.195 1.88.121.574-.091 1.754-.721 2.002-1.426.255-.705.255-1.29.18-1.425-.074-.135-.27-.21-.57-.345z"/>
+                      <path d="M20.52 3.449C18.24.986 15.054 0 11.986 0 5.462 0 .457 4.989.457 11.573c0 2.069.549 4.079 1.588 5.849L0 24l6.917-1.826c1.62.892 3.443 1.369 5.337 1.369 6.525 0 11.53-4.989 11.53-11.573 0-3.023-1.178-5.903-3.264-8.521zM11.986 21.38c-1.775 0-3.488-.523-4.973-1.478l-.361-.216-3.75.99.997-3.648-.235-.374c-.964-1.59-1.497-3.393-1.497-5.339 0-5.283 4.3-9.58 9.592-9.58 2.558 0 4.96.997 6.77 2.805 1.81 1.807 2.805 4.214 2.805 6.775 0 5.283-4.301 9.58-9.593 9.58z"/>
+                    </svg>
+                    Send via WhatsApp
                   </span>
                 )}
               </motion.button>
+              
+              <p className="text-xs text-muted-foreground text-center pt-2">
+                After submitting, you'll be redirected to WhatsApp to send your message
+              </p>
             </form>
           </motion.div>
         </div>
