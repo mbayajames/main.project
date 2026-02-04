@@ -57,7 +57,7 @@ export const Hero = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="heading-xl mb-4"
           >
-            John <span className="gradient-text">Developer</span>
+            Mbaya <span className="gradient-text">Developer</span>
           </motion.h1>
 
           {/* Role with Typing Effect */}
@@ -79,7 +79,7 @@ export const Hero = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="body-lg max-w-2xl mx-auto mb-8"
           >
-            Building scalable, beautiful, and meaningful digital experiences that make a difference.
+            Designing scalable, elegant, and impactful digital solutions that drive meaningful results.
           </motion.p>
 
           {/* Tech Stack Badges */}
@@ -128,7 +128,7 @@ export const Hero = () => {
             </motion.a>
           </motion.div>
 
-          {/* Social Links */}
+          {/* Social Links - UPDATED WITH YOUR LINKS */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -136,9 +136,21 @@ export const Hero = () => {
             className="flex justify-center lg:justify-start gap-6"
           >
             {[
-              { icon: Github, href: "https://github.com", label: "GitHub" },
-              { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-              { icon: Mail, href: "mailto:hello@example.com", label: "Email" },
+              { 
+                icon: Github, 
+                href: "https://github.com/mbayajames", 
+                label: "GitHub" 
+              },
+              { 
+                icon: Linkedin, 
+                href: "https://www.linkedin.com/in/james-muthiora-89915a271/", 
+                label: "LinkedIn" 
+              },
+              { 
+                icon: Mail, 
+                href: "mailto:muthiorajames39@gmail.com,jmuthiora244@gmail.com", 
+                label: "Email" 
+              },
             ].map((social) => (
               <motion.a
                 key={social.label}
