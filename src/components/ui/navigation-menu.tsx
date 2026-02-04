@@ -1,9 +1,9 @@
 import * as React from "react";
 import * as NavigationMenuPrimitive from "@radix-ui/react-navigation-menu";
+
 import { ChevronDown } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import { navigationMenuTriggerStyle } from "./navigation-menu-variants";
 
 const NavigationMenu = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Root>,
@@ -33,6 +33,8 @@ const NavigationMenuList = React.forwardRef<
 NavigationMenuList.displayName = NavigationMenuPrimitive.List.displayName;
 
 const NavigationMenuItem = NavigationMenuPrimitive.Item;
+
+import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu-variants";
 
 const NavigationMenuTrigger = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Trigger>,
