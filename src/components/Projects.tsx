@@ -49,7 +49,7 @@ const projects = [
     tech: ["React", "TypeScript", "Tailwind CSS", "Vercel"],
     category: "Web App",
     github: "https://github.com/mbayajames", // ← update if it's a different repo
-    demo: "https://main-project-1pewjtnfn-mbayajames-projects.vercel.app/",
+    demo: "https://main-project-wgub.vercel.app/",
     featured: true,
   },
 ];
