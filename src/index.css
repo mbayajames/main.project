@@ -3,7 +3,9 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
-/* Design System - Black & White Elegance with Cyan Accent */
+/* ────────────────────────────────────────────────
+   Design System - Black & White Elegance + Cyan Accent
+───────────────────────────────────────────────── */
 
 @layer base {
   :root {
@@ -37,7 +39,7 @@
 
     --radius: 1rem;
 
-    /* Custom tokens */
+    /* Custom design tokens */
     --gradient-hero: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(0 0% 96%) 100%);
     --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(0 0% 98%) 100%);
     --gradient-accent: linear-gradient(135deg, hsl(187 100% 50%) 0%, hsl(200 100% 60%) 100%);
@@ -121,13 +123,17 @@
   }
 }
 
+/* ────────────────────────────────────────────────
+   Components
+───────────────────────────────────────────────── */
+
 @layer components {
   .glass-card {
     background-color: hsl(var(--card) / 0.8);
     -webkit-backdrop-filter: blur(16px);
     backdrop-filter: blur(16px);
     border: 1px solid hsl(var(--border) / 0.5);
-    border-radius: 1rem;
+    border-radius: var(--radius);
     box-shadow: var(--shadow-card);
   }
 
@@ -136,7 +142,7 @@
     -webkit-backdrop-filter: blur(16px);
     backdrop-filter: blur(16px);
     border: 1px solid hsl(var(--border) / 0.5);
-    border-radius: 1rem;
+    border-radius: var(--radius);
     box-shadow: var(--shadow-card);
     transition: all 500ms ease-out;
   }
@@ -147,10 +153,10 @@
   }
 
   .gradient-text {
+    background-image: var(--gradient-accent);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    background-image: var(--gradient-accent);
   }
 
   .gradient-border {
@@ -170,298 +176,157 @@
     mask-composite: exclude;
   }
 
+  .btn-primary,
+  .btn-accent,
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-medium transition-all duration-300;
+  }
+
   .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1.5rem;
-    border-radius: 0.75rem;
-    font-weight: 500;
-    background-color: hsl(var(--primary));
-    color: hsl(var(--primary-foreground));
-    transition: all 300ms ease-out;
+    @apply bg-primary text-primary-foreground;
   }
 
   .btn-primary:hover {
-    transform: scale(1.05);
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-  }
-
-  .btn-primary:active {
-    transform: scale(1);
+    @apply scale-105 shadow-lg;
   }
 
   .btn-accent {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1.5rem;
-    border-radius: 0.75rem;
-    font-weight: 500;
-    color: hsl(var(--accent-foreground));
     background: var(--gradient-accent);
-    transition: all 300ms ease-out;
     box-shadow: var(--shadow-glow);
+    color: hsl(var(--accent-foreground));
   }
 
   .btn-accent:hover {
-    transform: scale(1.05);
-  }
-
-  .btn-accent:active {
-    transform: scale(1);
+    @apply scale-105;
   }
 
   .btn-outline {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1.5rem;
-    border-radius: 0.75rem;
-    font-weight: 500;
-    border: 2px solid hsl(var(--primary));
-    color: hsl(var(--primary));
-    transition: all 300ms ease-out;
+    @apply border-2 border-primary text-primary;
   }
 
   .btn-outline:hover {
-    background-color: hsl(var(--primary));
-    color: hsl(var(--primary-foreground));
+    @apply bg-primary text-primary-foreground;
   }
 
   .section-container {
-    max-width: 80rem;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
   }
 
-  @media (min-width: 640px) {
-    .section-container {
-      padding-left: 1.5rem;
-      padding-right: 1.5rem;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .section-container {
-      padding-left: 2rem;
-      padding-right: 2rem;
-    }
-  }
-
-  .heading-xl {
-    font-size: 2.25rem;
-    font-weight: 700;
-    line-height: 1;
-    letter-spacing: -0.025em;
-    font-family: 'Space Grotesk', sans-serif;
-  }
-
-  @media (min-width: 640px) {
-    .heading-xl {
-      font-size: 3rem;
-    }
-  }
-
-  @media (min-width: 768px) {
-    .heading-xl {
-      font-size: 3.75rem;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .heading-xl {
-      font-size: 4.5rem;
-    }
-  }
-
-  .heading-lg {
-    font-size: 1.875rem;
-    font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -0.025em;
-    font-family: 'Space Grotesk', sans-serif;
-  }
-
-  @media (min-width: 640px) {
-    .heading-lg {
-      font-size: 2.25rem;
-    }
-  }
-
-  @media (min-width: 768px) {
-    .heading-lg {
-      font-size: 3rem;
-    }
-  }
-
-  .heading-md {
-    font-size: 1.5rem;
-    font-weight: 600;
-    line-height: 1.2;
-    letter-spacing: -0.025em;
-    font-family: 'Space Grotesk', sans-serif;
-  }
-
-  @media (min-width: 640px) {
-    .heading-md {
-      font-size: 1.875rem;
-    }
-  }
+  .heading-xl { @apply font-display text-5xl md:text-6xl font-bold tracking-tight leading-none; }
+  .heading-lg  { @apply font-display text-4xl md:text-5xl font-bold tracking-tight leading-tight; }
+  .heading-md  { @apply font-display text-2xl md:text-3xl font-semibold tracking-tight; }
 
   .body-lg {
-    font-size: 1.125rem;
-    line-height: 1.75;
-    color: hsl(var(--muted-foreground));
-  }
-
-  @media (min-width: 640px) {
-    .body-lg {
-      font-size: 1.25rem;
-    }
+    @apply text-lg md:text-xl leading-relaxed text-muted-foreground;
   }
 
   .skill-badge {
-    padding: 0.5rem 1rem;
-    border-radius: 9999px;
-    font-size: 0.875rem;
-    font-weight: 500;
-    background-color: hsl(var(--secondary));
-    color: hsl(var(--secondary-foreground));
-    transition: all 300ms;
-  }
-
-  .skill-badge:hover {
-    background-color: hsl(var(--primary));
-    color: hsl(var(--primary-foreground));
+    @apply inline-flex px-4 py-2 rounded-full text-sm font-medium bg-secondary text-secondary-foreground transition-colors hover:bg-primary hover:text-primary-foreground;
   }
 }
+
+/* ────────────────────────────────────────────────
+   Utilities & Animations
+───────────────────────────────────────────────── */
 
 @layer utilities {
   .animate-float {
     animation: float 6s ease-in-out infinite;
   }
 
-  .animate-pulse-slow {
-    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  }
-
   .animate-gradient {
     background-size: 200% 200%;
-    animation: gradient-shift 8s ease infinite;
+    animation: gradient-shift 10s ease infinite;
   }
 
   @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-20px); }
   }
 
   @keyframes gradient-shift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
   }
 }
 
-/* ===== MENU/NAVIGATION FIXES ===== */
+/* ────────────────────────────────────────────────
+   Navigation & Mobile Menu Fixes
+───────────────────────────────────────────────── */
 
-/* 1. Ensure menu items are clickable */
-nav *,
-.menu *,
-[role="menu"] *,
-[role="navigation"] * {
-  pointer-events: auto !important;
-}
-
-/* 2. Fix for dropdown/mobile menu overlays */
-[data-state="open"],
-[aria-expanded="true"],
-.menu-open {
-  z-index: 9999 !important;
-  pointer-events: auto !important;
-}
-
-/* 3. Prevent parent elements from blocking clicks */
-nav,
-.menu,
-.navbar,
-.header {
-  position: relative;
-  z-index: 100;
-}
-
-/* 4. Fix for mobile menu backdrop */
-.menu-backdrop,
-
-
-/* 5. Ensure menu items have proper touch targets */
-.menu-item,
-.nav-link,
-.dropdown-item {
-  min-height: 44px;
-  min-width: 44px;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  position: relative;
-  z-index: 1001;
-}
-
-/* 6. Fix for hover effects that might interfere */
-@media (hover: hover) {
-  .menu-item:hover,
-  .nav-link:hover {
-    z-index: 1002;
+@layer base {
+  nav,
+  .navbar,
+  [role="navigation"] {
+    @apply relative z-[100] isolate;
   }
-}
 
-/* 7. Specific fix for Tailwind/React common issues */
-[data-radix-menu-content],
-[data-radix-dropdown-menu-content] {
-  z-index: 9999 !important;
-  pointer-events: auto !important;
-}
-
-/* 8. Prevent text selection interference */
-.menu-item,
-.nav-link {
-  -webkit-user-select: none;
-  user-select: none;
-}
-
-/* 9. Fix for animated menus */
-.menu-enter,
-.menu-enter-active {
-  pointer-events: auto !important;
-}
-
-/* Ensure mobile menu doesn't block clicks when closed */
-.mobile-menu-closed {
-  pointer-events: none !important;
-}
-
-/* 10. Debug class - add temporarily to identify issues */
-.debug-click {
-  outline: 2px solid red !important;
-  background: rgba(255, 0, 0, 0.1) !important;
-}
-
-/* Better mobile menu interaction */
-@media (max-width: 767px) {
-  a[href^="#"],
-  button[onclick],
-  [role="button"] {
+  nav *,
+  .nav-link,
+  .menu-item,
+  [role="menu"] * {
+    pointer-events: auto;
     touch-action: manipulation;
-    -webkit-tap-highlight-color: transparent;
   }
-}
 
-/* Make sure mobile panel is interactive */
-.fixed.z-50.md\\:hidden {
-  pointer-events: auto !important;
+  @media (max-width: 767px) {
+    a[href^="#"],
+    button,
+    [role="button"] {
+      -webkit-tap-highlight-color: transparent;
+    }
+  }
+
+  /* Radix / shadcn NavigationMenu fixes */
+  [data-radix-popper-content-wrapper],
+  [data-radix-dropdown-menu-content],
+  [data-radix-navigation-menu-content],
+  [data-radix-hover-card-content] {
+    z-index: 9999 !important;
+    pointer-events: auto !important;
+  }
+
+  [data-radix-navigation-menu-viewport],
+  [data-radix-navigation-menu-content] {
+    pointer-events: auto !important;
+  }
+
+  [data-radix-navigation-menu-viewport]:hover,
+  [data-radix-navigation-menu-content]:hover {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  [data-radix-navigation-menu-trigger]:hover ~ [data-radix-navigation-menu-viewport],
+  [data-radix-navigation-menu-trigger][data-state="open"] ~ [data-radix-navigation-menu-viewport],
+  [data-radix-navigation-menu-trigger]:hover + [data-radix-navigation-menu-content],
+  [data-radix-navigation-menu-trigger][data-state="open"] + [data-radix-navigation-menu-content] {
+    pointer-events: auto !important;
+    opacity: 1 !important;
+  }
+
+  [data-state="open"] > [data-radix-navigation-menu-viewport],
+  [data-state="open"] > [data-radix-navigation-menu-content] {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  [data-radix-navigation-menu-viewport],
+  [data-radix-navigation-menu-content] {
+    transition: opacity 0.15s ease, transform 0.2s ease;
+  }
+
+  .navbar-hover-fix {
+    isolation: isolate;
+  }
+
+  .nav-link,
+  .menu-item,
+  nav button {
+    -webkit-user-select: none;
+    user-select: none;
+  }
 }

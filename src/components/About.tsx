@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { Code, Heart, Users, Lightbulb } from "lucide-react";
 
 const stats = [
-  { value: "5+", label: "Years Experience" },
+  { value: "3+", label: "Years Experience" },
   { value: "50+", label: "Projects Completed" },
   { value: "30+", label: "Happy Clients" },
   { value: "100+", label: "Students Mentored" },

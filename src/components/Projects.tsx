@@ -5,111 +5,109 @@ import { ExternalLink, Github, ChevronRight } from "lucide-react";
 
 const projects = [
   {
-    title: "EduConnect Platform",
-    description: "A comprehensive educational social network connecting students, mentors, and educators with real-time collaboration features.",
-    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop",
-    tech: ["React", "Firebase", "Node.js", "Tailwind"],
+    title: "Quest for Happiness",
+    description:
+      "An interactive journey and reflection platform designed to help users explore happiness, mindfulness, and personal growth.",
+    image:
+      "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&h=400&fit=crop",
+    tech: ["React", "TypeScript", "Tailwind CSS", "Vercel"],
     category: "Web App",
-    github: "https://github.com",
-    demo: "https://demo.com",
+    github: "https://github.com", // ← replace with actual repo if available
+    demo: "https://quest-for-happiness-eosin.vercel.app/",
     featured: true,
   },
   {
-    title: "FinTrack Dashboard",
-    description: "Personal finance management dashboard with AI-powered insights, expense tracking, and interactive data visualizations.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
-    tech: ["Next.js", "TypeScript", "PostgreSQL", "Chart.js"],
+    title: "Mbaya FXS",
+    description:
+      "Forex signals and trading resources platform offering market analysis, signals, and educational content for traders.",
+    image:
+      "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&h=400&fit=crop",
+    tech: ["React", "Node.js", "Tailwind", "Render"],
+    category: "Web App",
+    github: "https://github.com", // ← replace with actual repo if available
+    demo: "https://mbaya-fxs-3.onrender.com/",
+    featured: true,
+  },
+  {
+    title: "Mbaya Forex Hub",
+    description:
+      "Comprehensive forex trading dashboard and community hub with tools, charts, signals, and trader resources.",
+    image:
+      "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=600&fit=crop&q=80",
+    tech: ["React", "TypeScript", "Tailwind CSS", "Vercel"],
     category: "Dashboard",
     github: "https://github.com",
-    demo: "https://demo.com",
+    demo: "https://mbaya-forex-hub.vercel.app/",
     featured: true,
   },
+  // {
+  //   title: "Main Project",
+  //   description:
+  //     "A modern web application showcasing clean design, smooth animations, and responsive layout — built as a central portfolio piece.",
+  //   image:
+  //     "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=600&fit=crop&q=80",
+  //   tech: ["React", "TypeScript", "Tailwind CSS", "Vercel"],
+  //   category: "Web App",
+  //   github: "https://github.com/mbayajames",
+  //   demo: "https://main-project-wgub.vercel.app/",
+  //   featured: true,
+  // },
+  // ────────────────────────────────────────────────
+  //     ADDED PROJECT
+  // ────────────────────────────────────────────────
   {
-    title: "E-Commerce Mobile App",
-    description: "Cross-platform mobile shopping experience with real-time inventory, secure payments, and personalized recommendations.",
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
-    tech: ["React Native", "Firebase", "Stripe", "Redux"],
-    category: "Mobile App",
-    github: "https://github.com",
-    demo: "https://demo.com",
-    featured: false,
-  },
-  {
-    title: "Task Management System",
-    description: "Enterprise-grade project management tool with team collaboration, Kanban boards, and automated workflows.",
-    image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop",
-    tech: ["Laravel", "Vue.js", "MySQL", "Docker"],
+    title: "Portfolio Showcase",
+    description:
+      "Clean, modern personal portfolio website featuring smooth animations, responsive design, and project highlights.",
+    image:
+      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=600&fit=crop&q=80", // same coding vibe image (feel free to change)
+    tech: ["React", "TypeScript", "Tailwind CSS", "Vercel"],
     category: "Web App",
-    github: "https://github.com",
-    demo: "https://demo.com",
-    featured: false,
-  },
-  {
-    title: "AI Content Generator",
-    description: "Smart content creation platform leveraging GPT for blog posts, marketing copy, and social media content.",
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop",
-    tech: ["Python", "FastAPI", "OpenAI", "React"],
-    category: "AI/ML",
-    github: "https://github.com",
-    demo: "https://demo.com",
+    github: "https://github.com/mbayajames", // ← update if it's a different repo
+    demo: "https://main-project-blue-eight.vercel.app/",
     featured: true,
-  },
-  {
-    title: "Real Estate Platform",
-    description: "Property listing and management system with virtual tours, mortgage calculators, and agent matching.",
-    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&h=400&fit=crop",
-    tech: ["React", "Node.js", "MongoDB", "Maps API"],
-    category: "Web App",
-    github: "https://github.com",
-    demo: "https://demo.com",
-    featured: false,
   },
 ];
 
-const categories = ["All", "Web App", "Mobile App", "Dashboard", "AI/ML"];
+const categories = ["All", "Web App", "Dashboard"];
 
 export const Projects = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [activeCategory, setActiveCategory] = useState("All");
 
-  const filteredProjects = activeCategory === "All"
-    ? projects
-    : projects.filter((p) => p.category === activeCategory);
+  const filteredProjects =
+    activeCategory === "All"
+      ? projects
+      : projects.filter((p) => p.category === activeCategory);
 
   return (
-    <section id="projects" className="py-24" ref={ref}>
-      <div className="section-container">
+    <section id="projects" className="py-20 md:py-32">
+      <div className="container mx-auto px-6">
         {/* Section Header */}
         <motion.div
+          ref={ref}
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
         >
-          <p className="text-accent font-medium mb-2">Portfolio</p>
-          <h2 className="heading-lg mb-4">
-            Featured <span className="gradient-text">Projects</span>
-          </h2>
-          <p className="body-lg max-w-2xl mx-auto">
-            A selection of projects that showcase my skills in building scalable, user-focused applications.
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">Portfolio</h2>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            Featured projects that showcase my skills in building modern,
+            user-focused web applications
           </p>
         </motion.div>
 
         {/* Category Filter */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="flex flex-wrap justify-center gap-3 mb-12"
-        >
+        <div className="flex flex-wrap justify-center gap-3 mb-12">
           {categories.map((category) => (
             <motion.button
               key={category}
               onClick={() => setActiveCategory(category)}
               className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${
                 activeCategory === category
-                  ? "bg-primary text-primary-foreground"
+                  ? "bg-primary text-primary-foreground shadow-md"
                   : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
               }`}
               whileHover={{ scale: 1.05 }}
@@ -118,101 +116,91 @@ export const Projects = () => {
               {category}
             </motion.button>
           ))}
-        </motion.div>
+        </div>
 
         {/* Projects Grid */}
-        <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project, index) => (
             <motion.div
               key={project.title}
-              layout
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="glass-card-hover group overflow-hidden"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="group relative overflow-hidden rounded-xl border bg-card shadow-sm hover:shadow-xl transition-all duration-300"
             >
-              {/* Project Image */}
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative aspect-video overflow-hidden">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent opacity-60" />
                 {project.featured && (
-                  <span className="absolute top-4 left-4 px-3 py-1 bg-accent text-accent-foreground text-xs font-semibold rounded-full">
+                  <div className="absolute top-3 left-3 bg-primary text-primary-foreground text-xs font-bold px-3 py-1 rounded-full">
                     Featured
-                  </span>
+                  </div>
                 )}
               </div>
 
-              {/* Project Content */}
               <div className="p-6">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-xs text-muted-foreground font-medium uppercase tracking-wide">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-sm text-primary font-medium">
                     {project.category}
                   </span>
-                  <div className="flex gap-2">
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2 rounded-lg bg-secondary hover:bg-secondary/80 transition-colors"
-                      aria-label="View GitHub"
-                    >
-                      <Github className="w-4 h-4" />
-                    </a>
-                    <a
-                      href={project.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2 rounded-lg bg-secondary hover:bg-secondary/80 transition-colors"
-                      aria-label="View Demo"
-                    >
-                      <ExternalLink className="w-4 h-4" />
-                    </a>
-                  </div>
                 </div>
-                <h3 className="font-display font-semibold text-lg mb-2 group-hover:text-accent transition-colors">
+
+                <h3 className="text-xl font-bold mb-2 line-clamp-1">
                   {project.title}
                 </h3>
-                <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+
+                <p className="text-muted-foreground mb-4 line-clamp-3">
                   {project.description}
                 </p>
-                <div className="flex flex-wrap gap-2">
+
+                <div className="flex flex-wrap gap-2 mb-6">
                   {project.tech.map((tech) => (
                     <span
                       key={tech}
-                      className="px-2 py-1 text-xs rounded-md bg-secondary text-secondary-foreground"
+                      className="px-3 py-1 bg-secondary text-secondary-foreground text-xs rounded-full"
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
+
+                <div className="flex gap-4">
+                  <a
+                    href={project.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline"
+                  >
+                    Live Demo <ExternalLink size={14} />
+                  </a>
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-foreground"
+                  >
+                    Source Code <Github size={14} />
+                  </a>
+                </div>
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
 
         {/* View All Link */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.5, delay: 0.6 }}
-          className="text-center mt-12"
-        >
-          <motion.a
-            href="https://github.com"
+        <div className="mt-16 text-center">
+          <a
+            href="https://github.com/mbayajames"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-accent font-medium hover:gap-3 transition-all"
-            whileHover={{ x: 5 }}
+            className="inline-flex items-center gap-2 text-lg font-medium hover:text-primary transition-colors"
           >
-            View All Projects on GitHub
-            <ChevronRight className="w-4 h-4" />
-          </motion.a>
-        </motion.div>
+            View All Projects on GitHub <ChevronRight size={20} />
+          </a>
+        </div>
       </div>
     </section>
   );
