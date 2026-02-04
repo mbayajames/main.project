@@ -1,57 +1,139 @@
 import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
+import { useInView } from "react-intersection-observer";
 
-const skillCategories = [
+interface Skill {
+  name: string;
+  description: string;
+  context: string[];
+}
+
+interface SkillCategory {
+  title: string;
+  subtitle: string;
+  skills: Skill[];
+}
+
+const skillCategories: SkillCategory[] = [
   {
-    title: "Frontend",
+    title: "Frontend Development",
+    subtitle: "Interfaces, dashboards, and high-performance web apps",
     skills: [
-      { name: "React.js", level: 95, description: "Building scalable UI components" },
-      { name: "TypeScript", level: 90, description: "Type-safe development" },
-      { name: "Next.js", level: 85, description: "SSR & static site generation" },
-      { name: "Tailwind CSS", level: 95, description: "Rapid UI development" },
+      {
+        name: "React.js",
+        description: "Building scalable UI components and dashboards",
+        context: ["Production", "SaaS", "Team projects"],
+      },
+      {
+        name: "TypeScript",
+        description: "Type-safe development with complex interfaces",
+        context: ["Production", "6+ projects"],
+      },
+      {
+        name: "Next.js",
+        description: "SSR, routing, API routes, and SEO-focused apps",
+        context: ["Production", "3+ projects"],
+      },
+      {
+        name: "Tailwind CSS",
+        description: "Rapid UI development & consistent design systems",
+        context: ["Production", "Daily use"],
+      },
     ],
   },
   {
-    title: "Backend",
+    title: "Backend Development",
+    subtitle: "APIs, authentication, server logic & services",
     skills: [
-      { name: "Node.js", level: 90, description: "REST APIs & authentication" },
-      { name: "Laravel", level: 85, description: "PHP enterprise applications" },
-      { name: "Express.js", level: 88, description: "API development" },
-      { name: "Python", level: 75, description: "Scripts & automation" },
+      {
+        name: "Node.js",
+        description: "REST & GraphQL APIs, auth, background jobs",
+        context: ["Production", "SaaS"],
+      },
+      {
+        name: "Express.js",
+        description: "Middleware, routing, clean API architecture",
+        context: ["Production", "5+ projects"],
+      },
+      {
+        name: "Laravel",
+        description: "PHP enterprise apps, APIs & complex business logic",
+        context: ["Production", "Client projects"],
+      },
+      {
+        name: "Python",
+        description: "Automation scripts, data processing, tooling",
+        context: ["Personal projects", "Learning"],
+      },
     ],
   },
   {
     title: "Database & Cloud",
+    subtitle: "Data modeling, persistence and infrastructure",
     skills: [
-      { name: "Firebase", level: 92, description: "Auth & real-time data" },
-      { name: "MongoDB", level: 85, description: "NoSQL databases" },
-      { name: "PostgreSQL", level: 82, description: "Relational databases" },
-      { name: "AWS", level: 78, description: "Cloud infrastructure" },
+      {
+        name: "Firebase",
+        description: "Authentication, Firestore, real-time features",
+        context: ["Production", "SaaS"],
+      },
+      {
+        name: "MongoDB",
+        description: "NoSQL schema design, aggregation pipelines",
+        context: ["Production", "4+ projects"],
+      },
+      {
+        name: "PostgreSQL",
+        description: "Relational modeling, complex queries, optimization",
+        context: ["Production", "Team projects"],
+      },
+      {
+        name: "AWS",
+        description: "Deployments, S3, EC2, basic scaling & CDN",
+        context: ["Learning", "2+ projects"],
+      },
     ],
   },
   {
     title: "Tools & Mobile",
+    subtitle: "Development workflow, mobile & collaboration",
     skills: [
-      { name: "React Native", level: 80, description: "Cross-platform mobile" },
-      { name: "Git & GitHub", level: 95, description: "Version control" },
-      { name: "Docker", level: 75, description: "Containerization" },
-      { name: "Figma", level: 70, description: "UI/UX design" },
+      {
+        name: "React Native",
+        description: "Cross-platform mobile apps with native performance",
+        context: ["Production", "2+ apps"],
+      },
+      {
+        name: "Git & GitHub",
+        description: "Branching strategies, PRs, code reviews",
+        context: ["Daily use", "Team collaboration"],
+      },
+      {
+        name: "Docker",
+        description: "Containerization, local dev environments",
+        context: ["Personal projects", "Learning"],
+      },
+      {
+        name: "Figma",
+        description: "UI/UX exploration & developer handoff",
+        context: ["Collaboration", "Design reviews"],
+      },
     ],
   },
 ];
 
 export const Skills = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { ref, inView } = useInView({
+    threshold: 0.1,
+    triggerOnce: true,
+    rootMargin: "-100px",
+  });
 
   return (
-    <section id="skills" className="py-24 bg-secondary/30" ref={ref}>
+    <section id="skills" className="py-24" ref={ref}>
       <div className="section-container">
-        {/* Section Header */}
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
@@ -60,52 +142,53 @@ export const Skills = () => {
             My <span className="gradient-text">Tech Stack</span>
           </h2>
           <p className="body-lg max-w-2xl mx-auto">
-            A comprehensive toolkit for building modern, scalable applications from concept to deployment.
+            A comprehensive toolkit for building modern, scalable, production-ready applications.
           </p>
         </motion.div>
 
-        {/* Skills Grid */}
-        <div className="grid md:grid-cols-2 gap-8">
-          {skillCategories.map((category, categoryIndex) => (
+        {/* Categories Grid */}
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-10">
+          {skillCategories.map((category, catIndex) => (
             <motion.div
               key={category.title}
-              className="glass-card p-6"
               initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: catIndex * 0.1 }}
+              className="glass-card p-8"
             >
-              <h3 className="font-display font-semibold text-lg mb-6 flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-accent" />
-                {category.title}
-              </h3>
-              <div className="space-y-5">
+              <div className="mb-7">
+                <h3 className="font-display font-semibold text-xl mb-2 flex items-center gap-3">
+                  <span className="w-2.5 h-2.5 rounded-full bg-accent flex-shrink-0" />
+                  {category.title}
+                </h3>
+                <p className="text-sm text-muted-foreground">{category.subtitle}</p>
+              </div>
+
+              <div className="space-y-6">
                 {category.skills.map((skill, skillIndex) => (
                   <motion.div
                     key={skill.name}
                     initial={{ opacity: 0, x: -20 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.4, delay: categoryIndex * 0.1 + skillIndex * 0.05 }}
-                    className="group"
+                    animate={inView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ duration: 0.5, delay: catIndex * 0.1 + skillIndex * 0.05 }}
                   >
-                    <div className="flex justify-between items-center mb-2">
-                      <div>
-                        <span className="font-medium text-foreground">{skill.name}</span>
-                        <span className="text-xs text-muted-foreground ml-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                          {skill.description}
-                        </span>
-                      </div>
-                      <span className="text-sm text-muted-foreground">{skill.level}%</span>
+                    <div className="mb-1.5">
+                      <span className="font-medium text-lg">{skill.name}</span>
                     </div>
-                    <div className="h-2 bg-secondary rounded-full overflow-hidden">
-                      <motion.div
-                        className="h-full rounded-full"
-                        style={{
-                          background: "linear-gradient(90deg, hsl(187 100% 50%) 0%, hsl(200 100% 60%) 100%)",
-                        }}
-                        initial={{ width: 0 }}
-                        animate={isInView ? { width: `${skill.level}%` } : {}}
-                        transition={{ duration: 1, delay: categoryIndex * 0.2 + skillIndex * 0.1, ease: "easeOut" }}
-                      />
+
+                    <p className="text-sm text-muted-foreground mb-3 leading-relaxed">
+                      {skill.description}
+                    </p>
+
+                    <div className="flex flex-wrap gap-2">
+                      {skill.context.map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-3 py-1 text-xs rounded-full bg-secondary text-muted-foreground border border-border"
+                        >
+                          {tag}
+                        </span>
+                      ))}
                     </div>
                   </motion.div>
                 ))}
@@ -113,6 +196,26 @@ export const Skills = () => {
             </motion.div>
           ))}
         </div>
+
+        {/* How I Use These Skills */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.5 }}
+          className="mt-16 md:mt-20 text-center"
+        >
+          <div className="glass-card p-8 md:p-10 max-w-4xl mx-auto">
+            <h3 className="font-display font-semibold text-xl mb-5">
+              How I Use These Skills
+            </h3>
+            <p className="text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+              I focus on building production-grade applications with clean architecture, 
+              strong typing, performance in mind, and maintainable code. I enjoy taking 
+              projects from concept → design → implementation → deployment, while 
+              collaborating closely with designers, product teams, and other developers.
+            </p>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
