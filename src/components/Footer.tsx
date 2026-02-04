@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
-import { Github, Linkedin, Twitter, Mail, Heart } from "lucide-react";
+import { Github, Linkedin, Twitter, Mail, Heart, MapPin, Phone } from "lucide-react";
 
 const socialLinks = [
-  { icon: Github, href: "https://github.com", label: "GitHub" },
-  { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
+  { icon: Github, href: "https://github.com/mbayajames", label: "GitHub" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/james-muthiora-89915a271/", label: "LinkedIn" },
   { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
-  { icon: Mail, href: "mailto:hello@example.com", label: "Email" },
+  { icon: Mail, href: "#", label: "Email" },
 ];
 
 const quickLinks = [
@@ -19,6 +19,17 @@ const quickLinks = [
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
 
+  // Email click handler
+  const handleEmailClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    // You can customize which email opens by default
+    // This opens the default email client with the first email address
+    window.location.href = "mailto:muthiorajames39@gmail.com";
+    
+    // Alternative: Show a dropdown/popup to choose email
+    // For a simple solution, we're using the first email as default
+  };
+
   return (
     <footer className="py-16 border-t border-border bg-secondary/20">
       <div className="section-container">
@@ -28,9 +39,35 @@ export const Footer = () => {
             <a href="#" className="font-display text-2xl font-bold mb-4 inline-block">
               <span className="gradient-text">Dev</span>Portfolio
             </a>
-            <p className="text-muted-foreground mb-6 max-w-xs">
-              Building digital experiences that matter. Let's create something amazing together.
-            </p>
+            <div className="text-muted-foreground mb-6 space-y-2">
+              <div className="flex items-center gap-2">
+                <MapPin className="w-4 h-4" />
+                <span>Nairobi, Kenya</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Phone className="w-4 h-4" />
+                <a 
+                  href="tel:+254712555914" 
+                  className="hover:text-foreground transition-colors"
+                >
+                  +254 712 555 914
+                </a>
+              </div>
+              <div className="space-y-1 pt-2">
+                <a 
+                  href="mailto:muthiorajames39@gmail.com" 
+                  className="block hover:text-foreground transition-colors"
+                >
+                  muthiorajames39@gmail.com
+                </a>
+                <a 
+                  href="mailto:jmuthiora244@gmail.com" 
+                  className="block hover:text-foreground transition-colors"
+                >
+                  jmuthiora244@gmail.com
+                </a>
+              </div>
+            </div>
             <div className="flex gap-3">
               {socialLinks.map((social) => (
                 <motion.a
@@ -42,6 +79,7 @@ export const Footer = () => {
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                   aria-label={social.label}
+                  onClick={social.label === "Email" ? handleEmailClick : undefined}
                 >
                   <social.icon className="w-5 h-5" />
                 </motion.a>
@@ -70,7 +108,7 @@ export const Footer = () => {
           <div>
             <h4 className="font-display font-semibold mb-4">Let's Connect</h4>
             <p className="text-muted-foreground mb-4">
-              Open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+              Based in Nairobi, Kenya. Open to discussing new projects, creative ideas, or opportunities to be part of your vision.
             </p>
             <motion.a
               href="#contact"
@@ -89,7 +127,7 @@ export const Footer = () => {
             © {currentYear} DevPortfolio. All rights reserved.
           </p>
           <p className="text-sm text-muted-foreground flex items-center gap-1">
-            Made with <Heart className="w-4 h-4 text-accent fill-accent" /> and lots of coffee
+            Made with <Heart className="w-4 h-4 text-accent fill-accent" /> in Nairobi, Kenya
           </p>
         </div>
       </div>
