@@ -33,11 +33,38 @@ const projects = [
     description:
       "Comprehensive forex trading dashboard and community hub with tools, charts, signals, and trader resources.",
     image:
-      "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=600&fit=crop&q=80", // ← cleaner forex/trading chart style
+      "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=600&fit=crop&q=80",
     tech: ["React", "TypeScript", "Tailwind CSS", "Vercel"],
     category: "Dashboard",
     github: "https://github.com",
     demo: "https://mbaya-forex-hub.vercel.app/",
+    featured: true,
+  },
+  // {
+  //   title: "Main Project",
+  //   description:
+  //     "A modern web application showcasing clean design, smooth animations, and responsive layout — built as a central portfolio piece.",
+  //   image:
+  //     "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=600&fit=crop&q=80",
+  //   tech: ["React", "TypeScript", "Tailwind CSS", "Vercel"],
+  //   category: "Web App",
+  //   github: "https://github.com/mbayajames",
+  //   demo: "https://main-project-wgub.vercel.app/",
+  //   featured: true,
+  // },
+  // ────────────────────────────────────────────────
+  //     ADDED PROJECT
+  // ────────────────────────────────────────────────
+  {
+    title: "Portfolio Showcase",
+    description:
+      "Clean, modern personal portfolio website featuring smooth animations, responsive design, and project highlights.",
+    image:
+      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=600&fit=crop&q=80", // same coding vibe image (feel free to change)
+    tech: ["React", "TypeScript", "Tailwind CSS", "Vercel"],
+    category: "Web App",
+    github: "https://github.com/mbayajames", // ← update if it's a different repo
+    demo: "https://main-project-blue-eight.vercel.app/",
     featured: true,
   },
 ];
