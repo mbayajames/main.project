@@ -67,6 +67,19 @@ const projects = [
     demo: "https://main-project-blue-eight.vercel.app/",
     featured: true,
   },
+
+  {
+    title: "Legacy Wear",
+    description:
+      "Modern e-commerce platform for fashion and accessories, featuring product showcases, customer reviews, and a distinct brand identity for the Kenyan market.",
+    image:
+      "https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=600&h=400&fit=crop",
+    tech: ["Next.js", "Tailwind CSS", "Vercel", "M-Pesa API"],
+    category: "E-Commerce",
+    github: "https://github.com",
+    demo: "https://legacy-wear.vercel.app/",
+    featured: true,
+  },
 ];
 
 const categories = ["All", "Web App", "Dashboard"];
