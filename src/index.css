@@ -105,8 +105,18 @@
 }
 
 @layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
   * {
     @apply border-border;
+  }
+
+  html,
+  body {
+    width: 100%;
+    overflow-x: hidden;
   }
 
   html {
@@ -116,6 +126,15 @@
   body {
     @apply bg-background text-foreground font-sans antialiased;
     font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    max-width: 100%;
+    height: auto;
   }
 
   ::selection {
@@ -212,12 +231,12 @@
     @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
   }
 
-  .heading-xl { @apply font-display text-5xl md:text-6xl font-bold tracking-tight leading-none; }
-  .heading-lg  { @apply font-display text-4xl md:text-5xl font-bold tracking-tight leading-tight; }
-  .heading-md  { @apply font-display text-2xl md:text-3xl font-semibold tracking-tight; }
+  .heading-xl { @apply font-display text-5xl md:text-6xl font-bold tracking-tight leading-none break-words; }
+  .heading-lg  { @apply font-display text-4xl md:text-5xl font-bold tracking-tight leading-tight break-words; }
+  .heading-md  { @apply font-display text-2xl md:text-3xl font-semibold tracking-tight break-words; }
 
   .body-lg {
-    @apply text-lg md:text-xl leading-relaxed text-muted-foreground;
+    @apply text-lg md:text-xl leading-relaxed text-muted-foreground break-words;
   }
 
   .skill-badge {
