@@ -10,4 +10,9 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  build: {
+    // Increase the warning limit for large output chunks.
+    // Adjust this value if you see `chunkSizeWarningLimit` warnings during builds.
+    chunkSizeWarningLimit: 2000, // in KB (default is 500)
+  },
 })
