@@ -38,7 +38,7 @@ export const About = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="about" className="py-24 relative" ref={ref}>
+    <section id="about" className="py-20 sm:py-24 relative" ref={ref}>
       <div className="section-container">
         {/* Section Header */}
         <motion.div
@@ -57,7 +57,7 @@ export const About = () => {
         </motion.div>
 
         {/* Main Content */}
-        <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-12 items-center mb-16">
           {/* Image/Avatar Section */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -65,22 +65,22 @@ export const About = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="relative"
           >
-            <div className="glass-card p-8 relative overflow-hidden">
+            <div className="glass-card p-5 sm:p-8 relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-transparent" />
               <div className="relative z-10">
-                <div className="w-48 h-48 mx-auto rounded-2xl bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center mb-6">
+                <div className="w-36 h-36 sm:w-44 sm:h-44 mx-auto rounded-2xl bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center mb-6">
                   <span className="text-6xl">👨‍💻</span>
                 </div>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {stats.map((stat, index) => (
                     <motion.div
                       key={stat.label}
-                      className="text-center p-4 rounded-xl bg-secondary/50"
+                      className="text-center p-3 sm:p-4 rounded-xl bg-secondary/50"
                       initial={{ opacity: 0, y: 20 }}
                       animate={isInView ? { opacity: 1, y: 0 } : {}}
                       transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
                     >
-                      <p className="text-2xl font-bold gradient-text">{stat.value}</p>
+                      <p className="text-2xl sm:text-3xl font-bold gradient-text">{stat.value}</p>
                       <p className="text-sm text-muted-foreground">{stat.label}</p>
                     </motion.div>
                   ))}
@@ -94,7 +94,7 @@ export const About = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="space-y-6"
+            className="space-y-6 max-w-xl mx-auto lg:mx-0"
           >
             <h3 className="heading-md">My Journey</h3>
             <p className="text-muted-foreground leading-relaxed">
@@ -114,7 +114,7 @@ export const About = () => {
             </p>
             <motion.a
               href="#contact"
-              className="btn-primary inline-flex"
+              className="btn-primary inline-flex w-full sm:w-auto justify-center px-6"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -124,7 +124,7 @@ export const About = () => {
         </div>
 
         {/* Values Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-6">
           {values.map((value, index) => (
             <motion.div
               key={value.title}
